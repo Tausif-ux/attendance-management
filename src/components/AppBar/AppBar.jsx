@@ -11,9 +11,10 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import ShareIcon from '@material-ui/icons/Share';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 import SwipeableTemporaryDrawer from '../Drawer/Drawer';
 
@@ -147,7 +148,7 @@ export default function PrimarySearchAppBar() {
             <MenuItem>
                 <IconButton aria-label="show 4 new mails" color="inherit">
                     <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
+                        <ShareIcon />
                     </Badge>
                 </IconButton>
                 <p>Messages</p>
@@ -205,15 +206,19 @@ export default function PrimarySearchAppBar() {
                     </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
                         <IconButton aria-label="show 17 new notifications" color="inherit">
                             <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon />
+                                <NotificationsIcon {...bindTrigger(popupState)} />
+                                <PopoverPopupState popoverContent = "You clicked notification" />
                             </Badge>
+                        </IconButton>
+                        <IconButton aria-label="show 4 new mails" color="inherit">
+                            <ShareIcon {...bindTrigger(popupState)} />
+                            <PopoverPopupState popoverContent = "You clicked share" />
+                        </IconButton>
+                        <IconButton aria-label="show 4 new mails" color="inherit">
+                            <SearchIcon {...bindTrigger(popupState)} />
+                            <PopoverPopupState popoverContent = "You clicked search" />
                         </IconButton>
                         <IconButton
                             edge="end"
