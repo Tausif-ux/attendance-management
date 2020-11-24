@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
@@ -14,9 +13,13 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 import SwipeableTemporaryDrawer from '../Drawer/Drawer';
+import PopoverPopupState from '../Popover/Popover';
+import NotificationsIconBtn from '../IconButtons/NotificationsIconBtn/NotificationsIconBtn';
+import SearchIconBtn from '../IconButtons/SearchIconBtn/SearchIconBtn';
+import ShareIconBtn from '../IconButtons/ShareIconBtn/ShareIconBtn';
+import SearchIconWithInp from '../IconButtons/SearchIconWithInp/SearchIconWithInp';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -67,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             width: '20ch',
         },
+    },
+    barLeftSide: {
+        display: 'flex',
     },
     sectionDesktop: {
         display: 'none',
@@ -175,6 +181,7 @@ export default function PrimarySearchAppBar() {
         </Menu>
     );
 
+
     return (
         <div className={classes.grow}>
             <AppBar position="static">
@@ -190,57 +197,17 @@ export default function PrimarySearchAppBar() {
                     </IconButton>
                     <Typography className={classes.title} variant="h6" noWrap>
                         Home
-          </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
+                    </Typography>
+                    <div className={classes.sectionDesktop}>
+                        <PopoverPopupState popoverContent="You clicked search" render={props => <SearchIconWithInp classes={classes} {...props} />} />
                     </div>
                     <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon {...bindTrigger(popupState)} />
-                                <PopoverPopupState popoverContent = "You clicked notification" />
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <ShareIcon {...bindTrigger(popupState)} />
-                            <PopoverPopupState popoverContent = "You clicked share" />
-                        </IconButton>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <SearchIcon {...bindTrigger(popupState)} />
-                            <PopoverPopupState popoverContent = "You clicked search" />
-                        </IconButton>
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+                    <div className={classes.barLeftSide} >
+                        <PopoverPopupState popoverContent="You clicked notification" render={props => <NotificationsIconBtn {...props} />} />
+                        <PopoverPopupState popoverContent="You clicked share" render={props => <ShareIconBtn {...props} />} />
                     </div>
                     <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
+                        <PopoverPopupState popoverContent="You clicked search" render={props => <SearchIconBtn {...props} />} />
                     </div>
                 </Toolbar>
             </AppBar>

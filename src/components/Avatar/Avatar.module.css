@@ -1,0 +1,17 @@
+.AvatarWithText{
+    width: 15%;
+    height: 15%;
+    border-radius: 7%;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+}
+
+.DateDay{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.DateMonth{
+    font-size: 0.75rem;
+}

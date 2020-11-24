@@ -1,18 +1,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
-export default function PopoverPopupState( props ) {
+export default function PopoverPopupState(props) {
   return (
     <PopupState variant="popover" popupId="demo-popup-popover">
       {(popupState) => (
         <div>
-          <Button variant="contained" color="primary" {...bindTrigger(popupState)}>
-            Open Popover
-          </Button>
+          {props.render({ bindTrigger, popupState })}
           <Popover
             {...bindPopover(popupState)}
             anchorOrigin={{
@@ -25,7 +22,7 @@ export default function PopoverPopupState( props ) {
             }}
           >
             <Box p={2}>
-              <Typography>{ props.popoverContent }</Typography>
+              <Typography>{props.popoverContent}</Typography>
             </Box>
           </Popover>
         </div>
