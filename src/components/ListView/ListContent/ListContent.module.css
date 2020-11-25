@@ -1,0 +1,21 @@
+.ListContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.LeaveType {
+    font-size: 1.1rem;
+    color: grey;
+}
+
+.StEndDate{
+    font-size: 0.85rem;
+    color: orange;
+}
+
+.LiveStatus{
+    font-size: 0.85rem;
+    color: rgb(141, 141, 141);
+}

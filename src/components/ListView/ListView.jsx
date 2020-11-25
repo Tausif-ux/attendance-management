@@ -17,30 +17,49 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CancelIcon from '@material-ui/icons/Cancel';
 import AvatarWithText from '../Avatar/Avatar';
+import ListContent from './ListContent/ListContent';
+
+import { useState } from 'react';
 
 
 const leaves = [
     {
-        date: { day: 25, month: 'AUG' }, leaveType: 'Could not Sign In',
+        id: 1, date: { day: 25, month: 'AUG' }, leaveType: 'Could not Sign In',
         startEndDate: { startDate: { day: 25, month: 'AUG' }, endDate: { day: 25, month: 'AUG' } },
         leaveStatus: 'In-Process'
     },
     {
-        date: { day: 25, month: 'AUG' }, leaveType: 'Could not Sign In',
-        startEndDate: { startDate: { day: 25, month: 'AUG' }, endDate: { day: 25, month: 'AUG' } },
+        id: 2, date: { day: '03', month: 'SEP' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: '03', month: 'SEP' }, endDate: { day: '07', month: 'SEP' } },
         leaveStatus: 'In-Process'
     }, {
-        date: { day: 25, month: 'AUG' }, leaveType: 'Could not Sign In',
-        startEndDate: { startDate: { day: 25, month: 'AUG' }, endDate: { day: 25, month: 'AUG' } },
-        leaveStatus: 'In-Process'
+        id: 3, date: { day: '01', month: 'JUL' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: '03', month: 'JUL' }, endDate: { day: '07', month: 'JUL' } },
+        leaveStatus: 'Rejected'
+    },
+    {
+        id: 3, date: { day: 25, month: 'JUN' }, leaveType: 'Paid Leave',
+        startEndDate: { startDate: { day: 25, month: 'JUN' }, endDate: { day: 25, month: 'JUN' } },
+        leaveStatus: 'Approved'
+    },
+    {
+        id: 4, date: { day: 23, month: 'MAY' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: 23, month: 'MAY' }, endDate: { day: 27, month: 'MAY' } },
+        leaveStatus: 'Rejected'
+    },
+    {
+        id: 5, date: { day: 21, month: 'APR' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: 21, month: 'APR' }, endDate: { day: 23, month: 'APR' } },
+        leaveStatus: 'Approved'
     },
 ];
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        maxWidth: 752,
+        maxWidth: '50%',
     },
     demo: {
         backgroundColor: theme.palette.background.paper,
@@ -48,46 +67,54 @@ const useStyles = makeStyles((theme) => ({
     title: {
         margin: theme.spacing(4, 0, 2),
     },
+    tabView: {
+        minWidth: '100%',
+    },
+    cancelIcon: {
+        size: '1.25rem',
+    }
 }));
 
-function generate(element) {
-    return [0, 1, 2].map((value) =>
-        React.cloneElement(element, {
-            key: value,
-        }),
-    );
-}
+// function generate(element) {
+//     return leavesList.map((value) =>
+//         React.cloneElement(element, {
+//             key: value,
+//         }),
+//     );
+// }
 
 export default function InteractiveList() {
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
+    const [leavesList, useLeavesList] = useState(leaves);
 
     return (
         <div className={classes.root}>
             <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} classes={{ root: classes.tabView }} >
                     <div className={classes.demo}>
-                        <List dense={dense}>
-                            {generate(
-                                <ListItem>
+                        <List dense={dense} >
+                            {leavesList.map(leave => (
+                                <ListItem id={leave.id} >
                                     <ListItemAvatar>
-                                        <Avatar>
-                                            {/* <FolderIcon /> */}
-                                            <AvatarWithText />
-                                        </Avatar>
+                                        <AvatarWithText date={leave.date} status={leave.leaveStatus} />
+                                        {/* <Avatar>
+                                            <FolderIcon />
+                                        </Avatar> */}
                                     </ListItemAvatar>
-                                    <ListItemText
-                                        primary="Single-line item"
-                                        secondary='Secondary text'
-                                    />
+                                    <ListContent leave={leave} />
+                                    {/* <ListItemText
+                                        primary={leave.leaveType}
+                                        secondary={`${leave.startEndDate.startDate.day} ${leave.startEndDate.startDate.month} - ${leave.startEndDate.endDate.day} ${leave.startEndDate.endDate.month}`}
+                                    /> */}
                                     <ListItemSecondaryAction>
                                         <IconButton edge="end" aria-label="delete">
-                                            <DeleteIcon />
+                                            <CancelIcon color='error' classes={{ root: classes.cancelIcon }} />
                                         </IconButton>
                                     </ListItemSecondaryAction>
-                                </ListItem>,
-                            )}
+                                </ListItem>
+                            ))}
                         </List>
                     </div>
                 </Grid>

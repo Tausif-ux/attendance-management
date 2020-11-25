@@ -56,6 +56,7 @@ export default function FullWidthTabs() {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        console.log(newValue);
     };
 
     const handleChangeIndex = (index) => {
@@ -73,11 +74,13 @@ export default function FullWidthTabs() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="Item One" {...a11yProps(0)} />
-                    <Tab label="Item Two" {...a11yProps(1)} />
+                    <Tab label="LEAVES" {...a11yProps(0)} />
+                    <Tab label="ATTENDANCE" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
-            <SwipeableViews
+            { value == 0 ? <ListView /> : null }
+
+            {/* <SwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={value}
                 onChangeIndex={handleChangeIndex}
@@ -88,7 +91,7 @@ export default function FullWidthTabs() {
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <ListView />
                 </TabPanel>
-            </SwipeableViews>
+            </SwipeableViews> */}
         </div>
     );
 }
