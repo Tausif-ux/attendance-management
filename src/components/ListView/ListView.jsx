@@ -20,46 +20,19 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CancelIcon from '@material-ui/icons/Cancel';
 import AvatarWithText from '../Avatar/Avatar';
 import ListContent from './ListContent/ListContent';
+import LeavesItem from './LeavesItem/LeavesItem';
+import AttendanceItem from './AttendanceItem/AttendanceItem';
 
 import { useState } from 'react';
 
 
-const leaves = [
-    {
-        id: 1, date: { day: 25, month: 'AUG' }, leaveType: 'Could not Sign In',
-        startEndDate: { startDate: { day: 25, month: 'AUG' }, endDate: { day: 25, month: 'AUG' } },
-        leaveStatus: 'In-Process'
-    },
-    {
-        id: 2, date: { day: '03', month: 'SEP' }, leaveType: 'Leave Without Pay',
-        startEndDate: { startDate: { day: '03', month: 'SEP' }, endDate: { day: '07', month: 'SEP' } },
-        leaveStatus: 'In-Process'
-    }, {
-        id: 3, date: { day: '01', month: 'JUL' }, leaveType: 'Leave Without Pay',
-        startEndDate: { startDate: { day: '03', month: 'JUL' }, endDate: { day: '07', month: 'JUL' } },
-        leaveStatus: 'Rejected'
-    },
-    {
-        id: 3, date: { day: 25, month: 'JUN' }, leaveType: 'Paid Leave',
-        startEndDate: { startDate: { day: 25, month: 'JUN' }, endDate: { day: 25, month: 'JUN' } },
-        leaveStatus: 'Approved'
-    },
-    {
-        id: 4, date: { day: 23, month: 'MAY' }, leaveType: 'Leave Without Pay',
-        startEndDate: { startDate: { day: 23, month: 'MAY' }, endDate: { day: 27, month: 'MAY' } },
-        leaveStatus: 'Rejected'
-    },
-    {
-        id: 5, date: { day: 21, month: 'APR' }, leaveType: 'Leave Without Pay',
-        startEndDate: { startDate: { day: 21, month: 'APR' }, endDate: { day: 23, month: 'APR' } },
-        leaveStatus: 'Approved'
-    },
-];
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        maxWidth: '50%',
+        maxWidth: '100%',
+        // display: 'block',
+        // overflow: 'scroll',
+        // height: '62%',
     },
     demo: {
         backgroundColor: theme.palette.background.paper,
@@ -83,11 +56,10 @@ const useStyles = makeStyles((theme) => ({
 //     );
 // }
 
-export default function InteractiveList() {
+export default function InteractiveList(props) {
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
-    const [leavesList, useLeavesList] = useState(leaves);
 
     return (
         <div className={classes.root}>
@@ -95,25 +67,16 @@ export default function InteractiveList() {
                 <Grid item xs={12} md={6} classes={{ root: classes.tabView }} >
                     <div className={classes.demo}>
                         <List dense={dense} >
-                            {leavesList.map(leave => (
-                                <ListItem id={leave.id} >
-                                    <ListItemAvatar>
-                                        <AvatarWithText date={leave.date} status={leave.leaveStatus} />
-                                        {/* <Avatar>
-                                            <FolderIcon />
-                                        </Avatar> */}
-                                    </ListItemAvatar>
-                                    <ListContent leave={leave} />
-                                    {/* <ListItemText
-                                        primary={leave.leaveType}
-                                        secondary={`${leave.startEndDate.startDate.day} ${leave.startEndDate.startDate.month} - ${leave.startEndDate.endDate.day} ${leave.startEndDate.endDate.month}`}
-                                    /> */}
-                                    <ListItemSecondaryAction>
-                                        <IconButton edge="end" aria-label="delete">
-                                            <CancelIcon color='error' classes={{ root: classes.cancelIcon }} />
-                                        </IconButton>
-                                    </ListItemSecondaryAction>
-                                </ListItem>
+                            {
+                                props.list.map(item => (
+                                props.tab == 0 ? <LeavesItem 
+                                    key = { item.id } 
+                                    leave = { item } classes = {classes}
+                                    onLeaveCancel = { props.onLeaveCancel } /> 
+                                : <AttendanceItem 
+                                    key = { item.id } 
+                                    attendance = { item } 
+                                    classes = {classes}/>
                             ))}
                         </List>
                     </div>

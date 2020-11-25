@@ -10,6 +10,9 @@ const AvatarWithText = props => {
         case 'Rejected':
             dynamicBorder = '10px solid red';
             break;
+        case 'Late Muster':
+            dynamicBorder = '10px solid red';
+            break;
         default:
             dynamicBorder = '10px solid green'; 
             break;

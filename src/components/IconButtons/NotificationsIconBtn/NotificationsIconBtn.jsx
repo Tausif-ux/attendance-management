@@ -14,5 +14,4 @@ const NotificationsIconBtn = props => {
         </>
      );
 }
- 
 export default NotificationsIconBtn;

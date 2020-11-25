@@ -43,19 +43,19 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         width: '100%',
-        padding: theme.spacing(0.5),
+        padding: theme.spacing(0),
     },
     header: {
         display: 'flex',
         alignItems: 'center',
-        height: 50,
-        paddingLeft: theme.spacing(1),
+        height: 40,
+        paddingLeft: theme.spacing(0.5),
         backgroundColor: theme.palette.background.default,
         color: 'blue',
         maxWidth: '100%',
     },
     img: {
-        maxHeight: 255,
+        maxHeight: 155,
         display: 'block',
         maxWidth: '100%',
         overflow: 'hidden',

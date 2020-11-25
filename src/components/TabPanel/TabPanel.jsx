@@ -1,13 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import ListView from '../ListView/ListView'
+import ListView from '../ListView/ListView';
+import ActionsIcons from '../IconButtons/HolidayCalender/HolidayCalender';
+
+const leaves = [
+    {
+        id: 1, date: { day: 25, month: 'AUG' }, leaveType: 'Could not Sign In',
+        startEndDate: { startDate: { day: 25, month: 'AUG' }, endDate: { day: 25, month: 'AUG' } },
+        leaveStatus: 'In-Process'
+    },
+    {
+        id: 2, date: { day: '03', month: 'SEP' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: '03', month: 'SEP' }, endDate: { day: '07', month: 'SEP' } },
+        leaveStatus: 'In-Process'
+    }, {
+        id: 3, date: { day: '01', month: 'JUL' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: '03', month: 'JUL' }, endDate: { day: '07', month: 'JUL' } },
+        leaveStatus: 'Rejected'
+    },
+    {
+        id: 4, date: { day: 25, month: 'JUN' }, leaveType: 'Paid Leave',
+        startEndDate: { startDate: { day: 25, month: 'JUN' }, endDate: { day: 25, month: 'JUN' } },
+        leaveStatus: 'Approved'
+    },
+    {
+        id: 5, date: { day: 23, month: 'MAY' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: 23, month: 'MAY' }, endDate: { day: 27, month: 'MAY' } },
+        leaveStatus: 'Rejected'
+    },
+    {
+        id: 6, date: { day: 21, month: 'APR' }, leaveType: 'Leave Without Pay',
+        startEndDate: { startDate: { day: 21, month: 'APR' }, endDate: { day: 23, month: 'APR' } },
+        leaveStatus: 'Approved'
+    },
+];
+
+const attendance = [
+    {
+        id: 1, date: { day: 25, month: 'AUG' }, weekDay: 'FRIDAY',
+        reason: 'Late Muster',
+        type: 'GO'
+    },
+    {
+        id: 2, date: { day: 12, month: 'JUL' }, weekDay: 'FRIDAY',
+        reason: 'Late Muster',
+        type: 'GO'
+    },
+    {
+        id: 3, date: { day: '03', month: 'MAY' }, weekDay: 'FRIDAY',
+        reason: 'Late Muster',
+        type: 'GO'
+    },
+];
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -53,6 +103,8 @@ export default function FullWidthTabs() {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
+    const [ leavesList, setLeavesList ] = useState(leaves);
+    const [ attendanceList, setAttendance ] = useState(attendance);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -63,6 +115,13 @@ export default function FullWidthTabs() {
         setValue(index);
     };
 
+    const handleLeaveCancel = (itemId) => {
+        const updatedList = leavesList.filter( leave => leave.id !== Number(itemId) );
+        setLeavesList( updatedList );
+        console.log(updatedList);
+        console.log(itemId);
+    };
+    console.log(leavesList);
     return (
         <div className={classes.root}>
             <AppBar position="static" color="default">
@@ -78,20 +137,10 @@ export default function FullWidthTabs() {
                     <Tab label="ATTENDANCE" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
-            { value == 0 ? <ListView /> : null }
-
-            {/* <SwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={value}
-                onChangeIndex={handleChangeIndex}
-            >
-                <TabPanel value={value} index={0} dir={theme.direction}>
-                    <ListView />
-                </TabPanel>
-                <TabPanel value={value} index={1} dir={theme.direction}>
-                    <ListView />
-                </TabPanel>
-            </SwipeableViews> */}
+            { value == 0 ? <ListView list = { leavesList } tab = { value } onLeaveCancel = { handleLeaveCancel } /> 
+                : <ListView list = { attendanceList } tab = { value } /> 
+            }
+            <ActionsIcons />
         </div>
     );
 }

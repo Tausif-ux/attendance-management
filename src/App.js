@@ -13,7 +13,9 @@ function App() {
       <main className="App-main" >
         <AppBody />
       </main>
-      <BottomNavBar />
+      <footer className='Bottom-navbar' >
+        <BottomNavBar />
+      </footer>
     </div>
   );
 }

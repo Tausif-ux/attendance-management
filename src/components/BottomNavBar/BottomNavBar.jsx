@@ -21,6 +21,9 @@ const useStyles = makeStyles({
   },
   label: {
     color: 'white',
+  },
+  'MuiBottomNavigation-root':{
+    justifyContent: 'space-between',
   }
 });
 
@@ -37,7 +40,8 @@ export default function SimpleBottomNavigation() {
       }}
       showLabels
       className={classes.root}
-    >
+      classes = { {'MuiBottomNavigation-root': classes['MuiBottomNavigation-root']} }
+    > 
       <BottomNavigationAction classes = { classes } label="Favorites" icon={<FavoriteIcon color={value === 0 ? 'action' : ''} classes={classes} />} />
       <BottomNavigationAction classes = { classes } label="Team" icon={<GroupIcon color={value === 1 ? 'action' : ''} classes={classes} />} />
       <BottomNavigationAction classes = { classes } label="Approvals" icon={<ErrorIcon color={value === 2 ? 'action' : ''} classes={classes} />} />

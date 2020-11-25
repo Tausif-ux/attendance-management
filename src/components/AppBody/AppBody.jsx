@@ -11,17 +11,24 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
       width: theme.spacing(300),
-      height: theme.spacing(16),
+      height: theme.spacing(100),
     },
     backgroundColor: 'lightgrey',
-    minHeight: '100vh',
+    // minHeight: '100vh',
   },
   imageSlider: {
       width: '100%',
-      margin: 5,
-      marginRight: 10,
+      margin: 0,
+      backgroundColor: 'lightgrey',
   },
-  listView: {},
+  listView: {
+    width: '100%',
+    marginTop: 10,
+    backgroundColor: 'lightgrey',
+  },
+  backgroundPaper: {
+    backgroundColor: 'lightgrey',
+  }
 }));
 
 export default function SimplePaper() {
@@ -29,11 +36,11 @@ export default function SimplePaper() {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={0}variant>
+      <Paper elevation={0} classes = { { root: classes.backgroundPaper } } >
         <Paper elevation={3} classes = { { root: classes.imageSlider } } >
             <ImageCarousel />
         </Paper>
-        <Paper elevation={3} variant classes = { { root: classes.imageSlider } }>
+        <Paper elevation={3}  classes = { { root: classes.listView } }>
             <TabPanel />
         </Paper>
       </Paper>

@@ -5,17 +5,17 @@
     margin-left: 20px;
 }
 
-.LeaveType {
+.FirstLine {
     font-size: 1.1rem;
     color: grey;
 }
 
-.StEndDate{
+.SecondLine{
     font-size: 0.85rem;
     color: orange;
 }
 
-.LiveStatus{
+.ThirdLine{
     font-size: 0.85rem;
     color: rgb(141, 141, 141);
 }
