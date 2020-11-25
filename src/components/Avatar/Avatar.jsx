@@ -5,16 +5,16 @@ const AvatarWithText = props => {
     let dynamicBorder = '';
     switch (props.status) {
         case 'In-Process':
-            dynamicBorder = '10px solid orange';
+            dynamicBorder = '8px solid orange';
             break;
         case 'Rejected':
-            dynamicBorder = '10px solid red';
+            dynamicBorder = '8px solid red';
             break;
         case 'Late Muster':
-            dynamicBorder = '10px solid red';
+            dynamicBorder = '8px solid red';
             break;
         default:
-            dynamicBorder = '10px solid green'; 
+            dynamicBorder = '8px solid green'; 
             break;
     }
     return (

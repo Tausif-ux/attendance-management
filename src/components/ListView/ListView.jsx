@@ -23,8 +23,6 @@ import ListContent from './ListContent/ListContent';
 import LeavesItem from './LeavesItem/LeavesItem';
 import AttendanceItem from './AttendanceItem/AttendanceItem';
 
-import { useState } from 'react';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: '100%',
     },
     cancelIcon: {
-        size: '1.25rem',
+        sizes: '2rem',
     }
 }));
 

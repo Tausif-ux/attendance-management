@@ -19,7 +19,7 @@ const AttendanceItem = (props) => {
                 thirdLine={props.attendance.type} />
             <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete">
-                    <AddCircleIcon color='success' classes={{ root: props.classes.cancelIcon }} />
+                    <AddCircleIcon fontSize = 'large' color='' classes={{ root: props.classes.cancelIcon }} />
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>

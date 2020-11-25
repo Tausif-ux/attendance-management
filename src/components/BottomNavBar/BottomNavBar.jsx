@@ -8,6 +8,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GroupIcon from '@material-ui/icons/Group';
 import ErrorIcon from '@material-ui/icons/Error';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import PopoverPopupState from '../Popover/Popover';
 
 const useStyles = makeStyles({
   root: {
@@ -42,10 +43,14 @@ export default function SimpleBottomNavigation() {
       className={classes.root}
       classes = { {'MuiBottomNavigation-root': classes['MuiBottomNavigation-root']} }
     > 
-      <BottomNavigationAction classes = { classes } label="Favorites" icon={<FavoriteIcon color={value === 0 ? 'action' : ''} classes={classes} />} />
-      <BottomNavigationAction classes = { classes } label="Team" icon={<GroupIcon color={value === 1 ? 'action' : ''} classes={classes} />} />
-      <BottomNavigationAction classes = { classes } label="Approvals" icon={<ErrorIcon color={value === 2 ? 'action' : ''} classes={classes} />} />
-      <BottomNavigationAction classes = { classes } label="Approvals" icon={<NotificationsIcon color={value === 3 ? 'action' : ''} classes={classes} />} />
+      <BottomNavigationAction classes = { classes } label="Favorites" 
+        icon={<PopoverPopupState popoverContent="You clicked share" render={props => <FavoriteIcon color={value === 0 ? 'action' : ''} classes={classes} {...props} />} />} />
+      <BottomNavigationAction classes = { classes } label="Team" 
+        icon={<GroupIcon color={value === 1 ? 'action' : ''} classes={classes} />} />
+      <BottomNavigationAction classes = { classes } label="Approvals" 
+        icon={<ErrorIcon color={value === 2 ? 'action' : ''} classes={classes} />} />
+      <BottomNavigationAction classes = { classes } label="Approvals" 
+        icon={<NotificationsIcon color={value === 3 ? 'action' : ''} classes={classes} />} />
     </BottomNavigation>
   );
 }

@@ -20,7 +20,7 @@ const LeavesItem = (props) => {
             { props.leave.leaveStatus === 'In-Process' ? (
                 <ListItemSecondaryAction onClick = { () => props.onLeaveCancel(props.leave.id) } >
                     <IconButton edge="end" aria-label="delete">
-                        <CancelIcon color='error' classes={{ root: props.classes.cancelIcon }} />
+                        <CancelIcon fontSize = 'large' color='error' classes={{ root: props.classes.cancelIcon }} />
                     </IconButton>
                 </ListItemSecondaryAction>
             ) : null }
