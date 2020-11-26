@@ -8,11 +8,9 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ShareIcon from '@material-ui/icons/Share';
-import MoreIcon from '@material-ui/icons/MoreVert';
 
 import SwipeableTemporaryDrawer from '../Drawer/Drawer';
 import PopoverPopupState from '../Popover/Popover';
@@ -110,9 +108,6 @@ export default function PrimarySearchAppBar() {
         handleMobileMenuClose();
     };
 
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
 
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 

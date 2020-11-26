@@ -2,13 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 import GroupIcon from '@material-ui/icons/Group';
 import ErrorIcon from '@material-ui/icons/Error';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import PopoverPopupState from '../Popover/Popover';
+import Popover from '../SimplePopover/SimplePopover';
 
 const useStyles = makeStyles({
   root: {
@@ -44,13 +42,13 @@ export default function SimpleBottomNavigation() {
       classes = { {'MuiBottomNavigation-root': classes['MuiBottomNavigation-root']} }
     > 
       <BottomNavigationAction classes = { classes } label="Favorites" 
-        icon={<PopoverPopupState popoverContent="You clicked share" render={props => <FavoriteIcon color={value === 0 ? 'action' : ''} classes={classes} {...props} />} />} />
+        icon={<Popover content="You clicked Favorites" render={props => <FavoriteIcon color={value === 0 ? 'action' : ''} classes={classes} {...props} />} />} />
       <BottomNavigationAction classes = { classes } label="Team" 
-        icon={<GroupIcon color={value === 1 ? 'action' : ''} classes={classes} />} />
+        icon={<Popover content="You clicked Team" render={props => <GroupIcon color={value === 1 ? 'action' : ''} classes={classes} {...props} />} />} />
       <BottomNavigationAction classes = { classes } label="Approvals" 
-        icon={<ErrorIcon color={value === 2 ? 'action' : ''} classes={classes} />} />
+        icon={<Popover content="You clicked Approvals" render={props => <ErrorIcon color={value === 2 ? 'action' : ''} classes={classes} {...props} />} />} />
       <BottomNavigationAction classes = { classes } label="Approvals" 
-        icon={<NotificationsIcon color={value === 3 ? 'action' : ''} classes={classes} />} />
+        icon={<Popover content="You clicked Notifications" render={props => <NotificationsIcon color={value === 3 ? 'action' : ''} classes={classes} {...props} />}/>} />
     </BottomNavigation>
   );
 }

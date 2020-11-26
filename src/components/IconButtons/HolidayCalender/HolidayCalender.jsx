@@ -1,10 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { green, pink } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
 import TodayIcon from '@material-ui/icons/Today';
 import AddIcon from '@material-ui/icons/Add';
-import PopoverPopupState from '../../Popover/Popover';
+import Popover from '../../SimplePopover/SimplePopover';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,11 +15,9 @@ const useStyles = makeStyles((theme) => ({
     },
     position: 'absolute',
     bottom: '55px',
-    right: '15px',
+    right: '44px',
   },
   pink: {
-    // color: theme.palette.getContrastText(pink[500]),
-    // backgroundColor: pink[500],
     color: '#fff',
     backgroundColor: '#4842f5',
   },
@@ -36,10 +33,10 @@ export default function IconAvatars() {
   return (
     <div className={classes.root}>
       <Avatar className={classes.green}>
-        <PopoverPopupState popoverContent="You clicked search" render={props => <TodayIcon {...props} />} />
+        <Popover content="You clicked Holiday Calendar" render={props => <TodayIcon {...props} />} />
       </Avatar>
       <Avatar className={classes.pink}>
-        <PopoverPopupState popoverContent="You clicked search" render={props => <AddIcon {...props} />} />
+        <Popover content="You clicked Apply Leave" render={props => <AddIcon {...props} />} />
       </Avatar>
     </div>
   );

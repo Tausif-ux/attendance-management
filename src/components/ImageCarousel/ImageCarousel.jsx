@@ -113,9 +113,9 @@ function SwipeableTextMobileStepper() {
                     ))}
                 </AutoPlaySwipeableViews>
             </div>
-            {/* <MobileStepper
+            <MobileStepper
                 steps={maxSteps}
-                position="bottom"
+                position="static"
                 variant="dots"
                 activeStep={activeStep}
                 nextButton={
@@ -128,7 +128,7 @@ function SwipeableTextMobileStepper() {
                         {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                     </Button>
                 }
-            /> */}
+            />
         </div>
     );
 }

@@ -1,11 +1,9 @@
 .App {
   text-align: center;
-  /* min-height: 100vh; */
   font-size: calc(10px + 2vmin);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   width: 100%; 
 }
 
@@ -16,11 +14,11 @@
   width: 100%;
 }
 
-.App-main{
+.App-main {
   width: 100%;
 }
 
-.Bottom-navbar{
+.Bottom-navbar {
   width: 100%;
   position: fixed;
   bottom: 0px;
